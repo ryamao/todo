@@ -1,45 +1,47 @@
-.todo__message--success {
-    background-color: #d1e7dd;
-    color: #0f5132;
-    border: 1px solid #badbcc;
-    padding: 10px 30px;
-}
+/* TODO-FORM */
 
-.todo__message--error {
-    background-color: #f8d7da;
-    color: #842029;
-    border: 1px solid#f5c2c7;
-    padding: 10px 30px;
-    margin: 0;
-}
-
-.create-form {
-    width: 70%;
+.todo-form {
+    width: 60%;
     margin: 0 auto;
+    padding: 30px 0;
 }
 
-.create-form__inner {
+.todo-form__controls {
     display: flex;
     justify-content: space-between;
-    margin: 50px 0;
 }
 
-.create-form__text {
+.todo-form__inputs {
     width: 70%;
+    display: flex;
 }
 
-.create-form__text-input {
+.todo-form__input-text {
+    width: 70%;
+    margin-right: 10px;
+}
+
+.todo-form__input-category {
+    width: 30%;
+}
+
+.todo-form__input-text input,
+.todo-form__input-category select {
     width: 100%;
-    height: 40px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 3px;
 }
 
-.create-form__button {
+.todo-form__input-category select {
+    appearance: none;
+}
+
+.todo-form__button {
     width: 20%;
 }
 
-.create-form__button-submit {
+.todo-form__button-submit {
     width: 100%;
     height: 40px;
     background-color: #000;
@@ -49,46 +51,45 @@
     cursor: pointer;
 }
 
-.todo-list {
-    width: 70%;
+/* TODO-TABLE */
+
+.todo-table {
+    width: 60%;
     margin: 0 auto;
 }
 
-.todo-list__heading {
-    font-size: 20px;
-    margin-left: 15px;
+.todo-table__inner {
+    width: 100%;
 }
 
-.todo-list__inner {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid #ddd;
-}
-
-.todo-list__item {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
+.todo-table__row {
     border-bottom: 1px solid #ddd;
 }
 
-.todo-list__text {
-    width: 100%;
+.todo-table__header,
+.todo-table__content,
+.todo-table__category {
+    width: 40%;
+    padding: 15px;
+    text-align: left;
 }
 
-.todo-list__text-input {
+.todo-table__content input,
+.todo-table__category select {
     width: 100%;
     outline: none;
     border: none;
+    appearance: none;
 }
 
-.todo-list__button {
+.todo-table__buttons {
     display: flex;
+    justify-content: space-evenly;
+    padding: 10px 0;
 }
 
-.update-form__button-submit,
-.delete-form__button-submit {
+.todo-table__update-button,
+.todo-table__delete-button {
     width: 50px;
     padding: 5px;
     color: #fff;
@@ -96,11 +97,10 @@
     border-radius: 3px;
 }
 
-.update-form__button-submit {
+.todo-table__update-button {
     background-color: #00f;
 }
 
-.delete-form__button-submit {
+.todo-table__delete-button {
     background-color: #f00;
-    margin-left: 15px;
 }

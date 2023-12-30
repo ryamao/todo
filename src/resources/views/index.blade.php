@@ -6,52 +6,95 @@
 
 @section('content')
 <div class="todo__content">
-    <div class="todo__message">
-        @if(session()->has('message'))
-        <div class="todo__message--success">{{ session('message') }}</div>
-        @endisset
-        @error('content')
-        <ul class="todo__message--error">
-            <li>{{ $message }}</li>
-        </ul>
-        @enderror
-    </div>
-    <form class="create-form" action="/todos" method="post">
-        @csrf
-        <div class="create-form__inner">
-            <div class="create-form__text">
-                <input class="create-form__text-input" type="text" name="content" />
-            </div>
-            <div class="create-form__button">
-                <button class="create-form__button-submit">作成</button>
-            </div>
-        </div>
-    </form>
-    <div class="todo-list">
-        <h2 class="todo-list__heading">Todo</h2>
-        <ul class="todo-list__inner">
-            @foreach ($todos as $todo)
-            <li class="todo-list__item">
-                <div class="todo-list__text">
-                    <input class="todo-list__text-input" form="update-form-{{ $todo->id }}" type="text" name="content" value="{{ $todo->content }}" />
+    <div class="todo-form">
+        <form class="todo-form__inner" action="/todos" method="post">
+            @csrf
+            <input type="hidden" name="action" value="store" />
+            <h2 class="todo-form__heading">新規作成</h2>
+            <div class="todo-form__controls">
+                <div class="todo-form__inputs">
+                    <div class="todo-form__input-text">
+                        <input type="text" name="content" value="{{ old('action') === 'store' ? old('content') : '' }}" />
+                    </div>
+                    <div class="todo-form__input-category">
+                        <select name="category_id">
+                            <option value="">カテゴリ</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-                <div class="todo-list__button">
-                    <form class="update-form" id="update-form-{{ $todo->id }}" action="/todos/update" method="post">
+                <div class="todo-form__button">
+                    <button class="todo-form__button-submit">作成</button>
+                </div>
+            </div>
+        </form>
+
+        <form class="todo-form__inner" action="/todos/search" method="get">
+            @csrf
+            <input type="hidden" name="action" value="search" />
+            <h2 class="todo-form__heading">Todo検索</h2>
+            <div class="todo-form__controls">
+                <div class="todo-form__inputs">
+                    <div class="todo-form__input-text">
+                        <input type="text" name="keyword" value="{{ session('search_keyword') }}" />
+                    </div>
+                    <div class="todo-form__input-category">
+                        <select name="category_id">
+                            <option value="">カテゴリ</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ session('search_category_id') === strval($category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="todo-form__button">
+                    <button class="todo-form__button-submit">検索</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="todo-table">
+        <table class="todo-table__inner">
+            <tr class="todo-table__row">
+                <th class="todo-table__header">Todo</th>
+                <th class="todo-table__header">カテゴリ</th>
+                <td class="todo-table__empty"></td>
+            </tr>
+
+            @foreach ($todos as $todo)
+            <tr class="todo-table__row">
+                <td class="todo-table__content">
+                    <input form="update-form-{{ $todo->id }}" type="text" name="content" value="{{ $todo->content }}" />
+                </td>
+                <td class="todo-table__category">
+                    <select form="update-form-{{ $todo->id }}" name="category_id">
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ $todo->category_id === $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </td>
+                <td class="todo-table__buttons">
+                    <form class="todo-table__update-form" id="update-form-{{ $todo->id }}" action="/todos/update" method="post">
                         @csrf
                         @method('patch')
+                        <input type="hidden" name="action" value="update" />
                         <input type="hidden" name="id" value="{{ $todo->id }}" />
-                        <button class="update-form__button-submit">更新</button>
+                        <button class="todo-table__update-button">更新</button>
                     </form>
-                    <form class="delete-form" action="/todos/delete" method="post">
+                    <form class="todo-table__delete-form" action="/todos/delete" method="post">
                         @csrf
                         @method('delete')
+                        <input type="hidden" name="action" value="delete" />
                         <input type="hidden" name="id" value="{{ $todo->id }}" />
-                        <button class="delete-form__button-submit">削除</button>
+                        <button class="todo-table__delete-button">削除</button>
                     </form>
-                </div>
-            </li>
+                </td>
+            </tr>
             @endforeach
-        </ul>
+        </table>
     </div>
 </div>
 @endsection
