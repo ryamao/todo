@@ -1,0 +1,98 @@
+/* CATEGORY-FORM */
+
+.category-form {
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.category-form__inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-form__name {
+    width: 70%;
+}
+
+.category-form__name input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.category-form__create {
+    width: 20%;
+}
+
+.category-form__create button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* CATEGORY-LIST */
+
+.category-list {
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.category-list__heading {
+    font-size: 20px;
+    margin: 0;
+    padding-left: 15px;
+}
+
+.category-list__inner {
+    list-style-type: none;
+    padding: 0;
+    border-top: 1px solid #ddd;
+}
+
+.category-list__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.category-list__name {
+    width: 70%;
+    padding-left: 15px;
+}
+
+.category-list__name input {
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+.category-list__buttons {
+    width: 20%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.category-list__update-form button,
+.category-list__delete-form button {
+    width: 50px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+}
+
+.category-list__update-form button {
+    background-color: #00f;
+}
+
+.category-list__delete-form button {
+    background-color: #f00;
+}

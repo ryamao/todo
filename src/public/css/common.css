@@ -1,14 +1,50 @@
+/* HEADER */
+
 .header {
     background: #000;
 }
 
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
 .header__heading {
-    margin: 0 auto;
-    padding: 20px 10px;
-    max-width: 1230px;
+    width: 20%;
+    text-align: center;
+    margin: 0;
 }
 
 .header__logo {
     text-decoration: none;
     color: #fff;
+}
+
+.header__nav {
+    width: 20%;
+    text-align: center;
+    margin: auto 0;
+}
+
+.header__nav-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* MESSAGE */
+
+.message__text--success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+    padding: 10px 30px;
+}
+
+.message__text--error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid#f5c2c7;
+    padding: 10px 30px;
+    margin: 0;
 }
